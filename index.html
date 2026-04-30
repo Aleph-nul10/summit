@@ -1,10 +1,235 @@
-<!doctype html>
-<html lang='en'>
-<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Summit Webworks</title><link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap' rel='stylesheet'><link rel='stylesheet' href='styles.css'></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summit Webworks | High-Converting Websites for Contractors</title>
+  <meta name="description" content="Summit Webworks designs modern, lead-focused websites for roofing companies and contractors. Get a free homepage redesign mockup." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F172A;
+      --blue: #2563EB;
+      --light-blue: #38BDF8;
+      --white: #FFFFFF;
+      --gray: #F8FAFC;
+      --text: #1F2937;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.55;
+    }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    section { padding: 88px 0; }
+    h1,h2,h3 { margin: 0 0 14px; color: var(--navy); line-height: 1.15; }
+    p { margin: 0 0 14px; }
+
+    .navbar {
+      position: fixed; inset: 0 0 auto 0; z-index: 99;
+      background: transparent; transition: all .25s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled { background: rgba(15, 23, 42, .92); backdrop-filter: blur(10px); border-bottom-color: rgba(255,255,255,.16); }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0; }
+    .brand { color: #fff; font-weight: 800; letter-spacing: .04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { color: #e5e7eb; text-decoration: none; font-weight: 500; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 22px; border-radius: 12px; border: 1px solid transparent;
+      text-decoration: none; font-weight: 700; transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--blue), var(--light-blue)); color: #fff; box-shadow: 0 10px 30px rgba(37, 99, 235, .35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(37, 99, 235, .45); }
+    .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+    .btn-outline:hover { transform: translateY(-2px); background: rgba(255,255,255,.1); }
+
+    .hero {
+      min-height: 100vh; display: grid; place-items: center; position: relative; color: #fff;
+      background: linear-gradient(rgba(15,23,42,.74), rgba(15,23,42,.74)), url('hero-image.png') center/cover no-repeat, linear-gradient(140deg, #dbeafe, #eff6ff);
+      text-align: left;
+    }
+    .hero-content { padding-top: 90px; max-width: 700px; }
+    .eyebrow { color: #bfdbfe; font-weight: 700; margin-bottom: 16px; letter-spacing: .03em; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3.6rem); color: #fff; }
+    .hero p { color: #e2e8f0; font-size: 1.1rem; max-width: 650px; }
+    .offer { margin: 24px 0 30px; padding: 14px 16px; background: rgba(59,130,246,.2); border: 1px solid rgba(147,197,253,.45); border-radius: 12px; font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .card {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; box-shadow: 0 8px 20px rgba(15, 23, 42, .05);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 34px rgba(15, 23, 42, .1); }
+    .icon { width: 36px; height: 36px; color: var(--blue); margin-bottom: 12px; }
+
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 36px; }
+    .section-head h2 { font-size: clamp(1.6rem, 3.3vw, 2.4rem); }
+    .section-head p { color: #4b5563; }
+
+    .before-after { background: var(--gray); }
+    .comparison-wrap { max-width: 980px; margin: 0 auto; position: relative; }
+    .comparison-img { width: 100%; display: block; border-radius: 18px; box-shadow: var(--shadow); border: 1px solid #e2e8f0; }
+    .label { position: absolute; top: 14px; font-size: .8rem; font-weight: 700; color: #fff; background: rgba(15,23,42,.8); padding: 8px 12px; border-radius: 999px; }
+    .label.before { left: 14px; }
+    .label.after { right: 14px; background: rgba(37,99,235,.9); }
+
+    .pricing .card strong { color: var(--blue); font-size: 1.1rem; }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    form { background: #fff; border: 1px solid #e5e7eb; border-radius: 18px; padding: 24px; box-shadow: 0 10px 28px rgba(15, 23, 42, .07); }
+    .field { margin-bottom: 14px; }
+    label { display: block; font-size: .92rem; margin-bottom: 6px; font-weight: 600; }
+    input, textarea {
+      width: 100%; padding: 12px 12px; border-radius: 10px; border: 1px solid #cbd5e1; font: inherit;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    footer { background: var(--navy); color: #cbd5e1; padding: 34px 0; }
+    footer a { color: #bfdbfe; text-decoration: none; }
+    .footer-grid { display:flex; justify-content: space-between; gap:20px; flex-wrap:wrap; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 920px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+    @media (max-width: 620px) {
+      section { padding: 72px 0; }
+      .grid-4 { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
 <body>
-<header class='navbar'><div class='container nav-wrap'><a class='brand' href='index.html'>SUMMIT WEBWORKS</a><nav class='nav-links'><a href='index.html'>Home</a><a href='services.html'>Services</a><a href='pricing.html'>Pricing</a><a href='about.html'>About</a><a href='contact.html'>Contact</a><a class='btn btn-primary' href='contact.html'>Get Free Mockup</a></nav></div></header>
-<section class='hero'><div class='container content reveal'><h1>Get a Better Website for Your Business</h1><p>We design modern, high-converting websites for roofing companies and contractors.</p><div class='offer'>Get a FREE homepage redesign mockup for your business — no commitment.</div><a class='btn btn-primary' href='contact.html'>Get Free Mockup</a> <a class='btn btn-dark' href='#results'>See Results</a></div></section>
-<section><div class='container reveal'><div class='section-head'><h2>Trust Built In</h2></div><div class='grid-4'><div class='card'><h3>Quality Design</h3><p>Clean premium layouts with strong credibility.</p></div><div class='card'><h3>Built for Contractors</h3><p>Messaging tailored to roofing and local services.</p></div><div class='card'><h3>Fast Turnaround</h3><p>Quick process and clear communication.</p></div><div class='card'><h3>Lead-Focused</h3><p>Every page section drives inbound calls and forms.</p></div></div></div></section>
-<section class='before-after' id='results'><div class='container reveal'><div class='section-head'><h2>See the Difference a Modern Website Makes</h2><p>Outdated websites lose customers. We redesign them to convert.</p></div><img class='comparison' src='assets/before-after-uploaded.png' alt='Before and after redesign'><p style='margin-top:22px;text-align:center'><a href='contact.html' class='btn btn-primary'>Get Your Free Mockup</a></p></div></section>
-<footer><div class='container footer-wrap'><div>Charan.webdesign@gmail.com</div><div>© <span id='year'></span> Summit Webworks</div></div></footer><script src='app.js'></script>
-</body></html>
+  <header class="navbar" id="navbar">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand">SUMMIT WEBWORKS</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-primary">Get Free Mockup</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-content reveal">
+      <div class="eyebrow">Web Design for Roofers & Contractors</div>
+      <h1>Get a Better Website for Your Business</h1>
+      <p>We design modern, high-converting websites for roofing companies and contractors.</p>
+      <div class="offer">Get a FREE homepage redesign mockup for your business — no commitment.</div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get Free Mockup</a>
+        <a href="#results" class="btn btn-outline">See Results</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container grid-4 reveal">
+      <article class="card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.9 5.9 6.5.9-4.7 4.5 1.1 6.5L12 17l-5.8 2.8 1.1-6.5L2.6 8.8l6.5-.9z"/></svg><h3>Quality Design</h3><p>Premium layouts built to reflect your craftsmanship and professionalism.</p></article>
+      <article class="card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 5l5 5-3 3-5-5zM2 22l6-2 12-12-4-4L4 16z"/></svg><h3>Built for Contractors</h3><p>Messaging and structure tailored for roofing and local service businesses.</p></article>
+      <article class="card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg><h3>Fast Turnaround</h3><p>Quick launch process without cutting corners on design quality.</p></article>
+      <article class="card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 20h18M7 16v-4m5 4V8m5 8V4"/></svg><h3>Lead-Focused</h3><p>Clear calls-to-action and structure that turns visitors into inquiries.</p></article>
+    </div>
+  </section>
+
+  <section class="before-after" id="results">
+    <div class="container reveal">
+      <div class="section-head"><h2>See the Difference a Modern Website Makes</h2><p>Outdated websites lose customers. We redesign them to convert.</p></div>
+      <div class="comparison-wrap">
+        <span class="label before">Before</span><span class="label after">After</span>
+        <img class="comparison-img" src="before-after.png" alt="Before and after website redesign comparison" loading="lazy">
+      </div>
+      <p style="text-align:center;margin-top:26px"><a href="#contact" class="btn btn-primary">Get Your Free Mockup</a></p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container reveal">
+      <div class="section-head"><h2>Services</h2></div>
+      <div class="grid-4">
+        <article class="card"><h3>Website Redesign</h3><p>Transform old sites into modern conversion assets.</p></article>
+        <article class="card"><h3>New Website Builds</h3><p>Custom websites built from the ground up for your brand.</p></article>
+        <article class="card"><h3>SEO Foundations</h3><p>On-page setup that helps local customers find you faster.</p></article>
+        <article class="card"><h3>Maintenance & Support</h3><p>Ongoing updates, backups, and improvements after launch.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#f8fafc">
+    <div class="container reveal"><div class="section-head"><h2>Why Choose Us</h2></div>
+      <div class="grid-4">
+        <article class="card"><h3>Built for conversions</h3><p>Every section is designed to move visitors toward contact.</p></article>
+        <article class="card"><h3>Industry-focused</h3><p>We know what homeowners look for in contractor websites.</p></article>
+        <article class="card"><h3>Fast communication</h3><p>Simple process, clear updates, and quick feedback loops.</p></article>
+        <article class="card"><h3>Affordable pricing</h3><p>Flexible options that fit your goals and your budget.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container reveal"><div class="section-head"><h2>Pricing</h2><p>Pricing depends on your requests and budget.</p></div>
+      <div class="grid-4" style="grid-template-columns:repeat(3,1fr)">
+        <article class="card"><h3>Starter</h3><strong>Starting from $150</strong></article>
+        <article class="card"><h3>Business</h3><strong>Starting from $300</strong></article>
+        <article class="card"><h3>Custom</h3><strong>Custom Quote</strong></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="background:#f8fafc">
+    <div class="container section-head reveal">
+      <h2>About Summit Webworks</h2>
+      <p>Summit Webworks helps contractors modernize their websites and generate more leads through clean, professional design.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-wrap reveal">
+      <div>
+        <h2>Get Your Free Mockup</h2>
+        <p>Tell us about your business and current website. We typically respond within 24 hours.</p>
+        <p><strong>Email:</strong> <a href="mailto:Charan.webdesign@gmail.com">Charan.webdesign@gmail.com</a></p>
+      </div>
+      <form action="https://formspree.io/f/xgorjraa" method="POST">
+        <div class="field"><label for="name">Name</label><input id="name" name="name" required></div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+        <div class="field"><label for="business">Business Name</label><input id="business" name="business_name" required></div>
+        <div class="field"><label for="website">Current Website</label><input id="website" name="current_website" placeholder="example: yoursite.com"></div>
+        <div class="field"><label for="budget">Budget</label><input id="budget" name="budget"></div>
+        <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>Charan.webdesign@gmail.com</div>
+      <div><a href="#home">Home</a> · <a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#about">About</a> · <a href="#contact">Contact</a></div>
+      <div>© <span id="year"></span> Summit Webworks</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver((entries)=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('show')), {threshold: .15});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
