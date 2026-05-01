@@ -1,16 +1,31 @@
 document.getElementById('year')?.append(new Date().getFullYear());
-const observer = new IntersectionObserver((entries)=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('show')), {threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-const hero = document.querySelector('.hero');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal, .card').forEach((el) => observer.observe(el));
+
+const hero = document.querySelector('.page-hero');
 if (hero) {
-  const probe = new Image();
-  probe.onload = () => hero.classList.remove('no-image');
-  probe.onerror = () => hero.classList.add('no-image');
-  probe.src = 'hero-image.svg';
+  window.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    hero.style.backgroundPosition = `${50 + x * 0.8}% ${50 + y * 0.8}%`;
+  });
 }
-const compare = document.querySelector('.comparison-img');
-if (compare) {
-  compare.onerror = () => {
-    compare.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 700'%3E%3Crect width='1200' height='700' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,sans-serif' font-size='44' fill='%230f172a'%3EBefore/After Image Missing%3C/text%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,sans-serif' font-size='28' fill='%23334155'%3EAdd before-after.svg in repo root%3C/text%3E%3C/svg%3E";
-  };
-}
+
+const cards = document.querySelectorAll('.card');
+cards.forEach((card) => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const rx = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
+    const ry = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
